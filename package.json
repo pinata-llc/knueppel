@@ -1,0 +1,74 @@
+{
+  "name": "knuepel",
+  "version": "0.1.0",
+  "description": "Compiles the Knüppel language to SQL/KnexJs objects",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "update-snapshots": "ava --update-snapshots",
+    "test": "npm run build && ava",
+    "coverage": "npm run build && nyc ava"
+  },
+  "contibutors": [
+    "Agustin Zubiaga <agustin@gopinata.com>",
+    "Georg Goettlich <georg@gopinata.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "DSL",
+    "language"
+  ],
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/acorn": "^4.0.5",
+    "@types/sinon": "^7.0.8",
+    "acorn": "^6.1.1",
+    "ava": "^1.2.1",
+    "husky": "^1.3.1",
+    "nyc": "^13.3.0",
+    "prettier": "^1.16.4",
+    "sinon": "^7.2.6",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.13.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.test.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint -- --fix && npm run build && git add lib"
+    }
+  }
+}
