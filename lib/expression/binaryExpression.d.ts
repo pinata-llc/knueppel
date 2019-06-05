@@ -1,5 +1,4 @@
-import Knex from "knex";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 declare const binaryOperators: readonly ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in"];
 export declare type BinaryOperator = typeof binaryOperators[number];
@@ -8,6 +7,6 @@ export declare class BinaryExpression extends Expression {
     protected operator: BinaryOperator;
     protected right: Expression;
     constructor(left: Expression, operator: BinaryOperator, right: Expression);
-    compile(knex: Knex, resolve: IdentifierResolver): Knex.Raw<any[]>;
+    build(qb: QueryBuilder): Promise<import("../queryBuilder").Query>;
 }
 export {};

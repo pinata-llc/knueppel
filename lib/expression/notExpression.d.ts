@@ -1,8 +1,7 @@
-import Knex from "knex";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
-export declare class UnaryExpression extends Expression {
+export declare class NotExpression extends Expression {
     protected argument: Expression;
     constructor(argument: Expression);
-    compile(knex: Knex, resolve: IdentifierResolver): Knex.Raw<any[]>;
+    build(qb: QueryBuilder): Promise<import("../queryBuilder").Query>;
 }

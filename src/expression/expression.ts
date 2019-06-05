@@ -1,6 +1,5 @@
-import Knex, { Raw } from "knex";
-import { IdentifierResolver } from "../node";
+import { Query, QueryBuilder } from "../queryBuilder";
 
 export abstract class Expression {
-  public abstract compile(knex: Knex, resolve: IdentifierResolver): Raw;
+  public abstract async build(qb: QueryBuilder): Promise<Query>;
 }

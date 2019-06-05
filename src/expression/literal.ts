@@ -1,15 +1,14 @@
-import Knex from "knex";
 import { ASTNode, ASTParam } from "../ast";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
 @ASTNode
 export class Literal extends Expression {
-  constructor(@ASTParam("value") protected value: string | number) {
+  constructor(@ASTParam("value") protected value: string | number | boolean) {
     super();
   }
 
-  public compile(knex: Knex, resolve: IdentifierResolver) {
-    return knex.raw("?", [this.value]);
+  public async build(qb: QueryBuilder) {
+    return qb.query("?", [this.value]);
   }
 }

@@ -14,10 +14,10 @@ export function ASTNode(target: NodeClass) {
 
 const NODE_PARAMS_KEY = "knueppel:AST:node:params";
 
-export function ASTParam(param: string) {
+export function ASTParam(name: string, isLiteral: boolean = false) {
   return (target: any, prop: string, ordinal: number) => {
     const params = Reflect.getMetadata(NODE_PARAMS_KEY, target) || [];
-    params[ordinal] = param;
+    params[ordinal] = { name, isLiteral };
     Reflect.defineMetadata(NODE_PARAMS_KEY, params, target);
   };
 }
@@ -35,22 +35,24 @@ export function build(entry: any, nodeTypes: INodeTypes = allNodeTypes) {
     throw new UnknownNodeType(entry.type);
   }
 
-  const paramNames = Reflect.getMetadata(NODE_PARAMS_KEY, nodeClass);
+  const paramMeta = Reflect.getMetadata(NODE_PARAMS_KEY, nodeClass);
 
   const params = [];
 
-  for (const paramName of paramNames) {
-    let param = entry[paramName];
+  for (const { name, isLiteral } of paramMeta) {
+    let param = entry[name];
 
-    if (Array.isArray(param)) {
-      const statements = param;
-      param = [];
+    if (!isLiteral) {
+      if (Array.isArray(param)) {
+        const statements = param;
+        param = [];
 
-      for (const statement of statements) {
-        param.push(build(statement, nodeTypes));
+        for (const statement of statements) {
+          param.push(build(statement, nodeTypes));
+        }
+      } else if (typeof param === "object") {
+        param = build(param, nodeTypes);
       }
-    } else if (typeof param === "object") {
-      param = build(param, nodeTypes);
     }
 
     params.push(param);

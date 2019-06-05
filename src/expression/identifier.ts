@@ -1,6 +1,5 @@
-import Knex from "knex";
 import { ASTNode, ASTParam } from "../ast";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
 @ASTNode
@@ -9,9 +8,9 @@ export class Identifier extends Expression {
     super();
   }
 
-  public compile(knex: Knex, resolve: IdentifierResolver) {
+  public async build(qb: QueryBuilder) {
     try {
-      return resolve(this.name, this.args);
+      return await qb.resolve(this.name, this.args);
     } catch (err) {
       /* tslint:disable-next-line */
       console.log(err);

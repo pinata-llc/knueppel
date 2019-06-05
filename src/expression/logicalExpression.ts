@@ -1,7 +1,5 @@
-import Knex from "knex";
-
 import { ASTNode, ASTParam } from "../ast";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
 export type LogicalOperator = "||" | "&&";
@@ -16,10 +14,10 @@ export class LogicalExpression extends Expression {
     super();
   }
 
-  public compile(knex: Knex, resolve: IdentifierResolver) {
-    return knex.raw(`(? ${this.operator === "||" ? "OR" : "AND"} ?)`, [
-      this.left.compile(knex, resolve),
-      this.right.compile(knex, resolve),
+  public async build(qb: QueryBuilder) {
+    return qb.query(`(? ${this.operator === "||" ? "OR" : "AND"} ?)`, [
+      await this.left.build(qb),
+      await this.right.build(qb),
     ]);
   }
 }

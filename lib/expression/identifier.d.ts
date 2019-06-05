@@ -1,9 +1,8 @@
-import Knex from "knex";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 export declare class Identifier extends Expression {
     name: string;
     protected args: Expression[];
     constructor(name: string, args: Expression[]);
-    compile(knex: Knex, resolve: IdentifierResolver): Knex.Raw<any>;
+    build(qb: QueryBuilder): Promise<import("../queryBuilder").Query>;
 }

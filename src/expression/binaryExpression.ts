@@ -1,7 +1,6 @@
-import Knex from "knex";
 import { ASTNode, ASTParam } from "../ast";
 import { UnknownBinaryOperator } from "../error/unknownBinaryOperator";
-import { IdentifierResolver } from "../node";
+import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
 const binaryOperators = ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in"] as const;
@@ -17,12 +16,12 @@ export class BinaryExpression extends Expression {
     super();
   }
 
-  public compile(knex: Knex, resolve: IdentifierResolver) {
-    const left = this.left.compile(knex, resolve);
-    const right = this.right.compile(knex, resolve);
+  public async build(qb: QueryBuilder) {
+    const left = await this.left.build(qb);
+    const right = await this.right.build(qb);
 
     if (binaryOperators.includes(this.operator)) {
-      return knex.raw(`(? ${this.operator} ?)`, [left, right]);
+      return qb.query(`(? ${this.operator} ?)`, [left, right]);
     }
 
     throw new UnknownBinaryOperator(this.operator);
