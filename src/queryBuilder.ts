@@ -17,7 +17,7 @@ type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
 const qmark = /\?/g;
 
 export class Query {
-  constructor(public queryString: string, public bindings: QueryBindings) {}
+  constructor(private queryString: string, private bindings: QueryBindings) {}
 
   public compile(): { queryString: string; bindings: SqlBindings } {
     let cnt = 0;

@@ -9,8 +9,8 @@ declare type SqlBinding = number | string | boolean | Date;
 declare type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 declare type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
 export declare class Query {
-    queryString: string;
-    bindings: QueryBindings;
+    private queryString;
+    private bindings;
     constructor(queryString: string, bindings: QueryBindings);
     compile(): {
         queryString: string;
