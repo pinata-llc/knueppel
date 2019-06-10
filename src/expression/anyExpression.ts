@@ -1,4 +1,4 @@
-import { ASTNode, ASTParam } from "../ast";
+import { ASTNode, ASTParam } from "../index";
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 import { Identifier } from "./identifier";

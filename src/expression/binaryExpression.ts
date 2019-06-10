@@ -1,5 +1,5 @@
-import { ASTNode, ASTParam } from "../ast";
 import { UnknownBinaryOperator } from "../error/unknownBinaryOperator";
+import { ASTNode, ASTParam } from "../index";
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
