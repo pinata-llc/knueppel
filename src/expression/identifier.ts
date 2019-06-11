@@ -1,4 +1,4 @@
-import { ASTNode, ASTParam } from "../index";
+import { ASTNode, ASTParam } from "zargon";
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
