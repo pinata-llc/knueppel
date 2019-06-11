@@ -1,4 +1,5 @@
 export { build, ASTParam, ASTNode } from "zargon";
-import * as Expressions from "./expression";
+export { QueryBuilder } from "./queryBuilder";
 
+import * as Expressions from "./expression";
 export const Expression = Expressions;
