@@ -1,5 +1,9 @@
 import { Expression } from "./expression/expression";
-export declare type IdentifierResolver = (name: string, args: Array<string | number | Expression>) => Promise<Query>;
+export declare type IdentifierResolver = (name: string, args?: Array<string | number | Expression>) => Promise<IResolverResult>;
+export interface IResolverResult {
+    queryString: string;
+    bindings?: SqlBindings;
+}
 export declare class QueryBuilder {
     resolve: IdentifierResolver;
     constructor(resolve: IdentifierResolver);

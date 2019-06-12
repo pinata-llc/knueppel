@@ -4,13 +4,17 @@ import { Expression } from "./expression";
 
 @ASTNode
 export class Identifier extends Expression {
-  constructor(@ASTParam("name") public name: string, @ASTParam("args") protected args: Expression[]) {
+  constructor(@ASTParam("name") public name: string, @ASTParam("args") protected args?: Expression[]) {
     super();
   }
 
   public async build(qb: QueryBuilder) {
     try {
-      return await qb.resolve(this.name, this.args);
+      const identifier = await qb.resolve(this.name, this.args);
+      if (!identifier) {
+        throw new Error(`Knüppel: Unknown identifier ${identifier}`);
+      }
+      return qb.query(identifier.queryString, identifier.bindings || []);
     } catch (err) {
       /* tslint:disable-next-line */
       console.log(err);

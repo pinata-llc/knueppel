@@ -2,7 +2,7 @@ import Knex, { RawBinding } from "knex";
 import { Query, QueryBuilder } from "../queryBuilder";
 
 const knex = Knex({ client: "pg" });
-const mockIdentifierResolver = async (name: string) => new Query(name, []);
+const mockIdentifierResolver = async (name: string) => ({ queryString: name });
 
 export const queryBuilder = new QueryBuilder(mockIdentifierResolver);
 
