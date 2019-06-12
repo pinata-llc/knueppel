@@ -14,7 +14,7 @@ export class Identifier extends Expression {
       if (!identifier) {
         throw new Error(`Knüppel: Unknown identifier ${identifier}`);
       }
-      return qb.query(identifier.queryString, identifier.bindings || []);
+      return qb.query(identifier.queryString, identifier.bindings || [], identifier.tables);
     } catch (err) {
       /* tslint:disable-next-line */
       console.log(err);
