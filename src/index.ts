@@ -10,7 +10,7 @@ export function buildQuery(jsonAst: any, resolve: IdentifierResolver) {
   return ast.build(qb);
 }
 
-export function compileQuery(jsonAst: any, resolve: IdentifierResolver) {
-  const query = buildQuery(jsonAst, resolve);
+export async function compileQuery(jsonAst: any, resolve: IdentifierResolver) {
+  const query = await buildQuery(jsonAst, resolve);
   return query.compile();
 }
