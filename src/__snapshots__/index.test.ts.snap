@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should build query object from a JSON AST 1`] = `
+Query {
+  "bindings": Array [
+    Query {
+      "bindings": Array [
+        Query {
+          "bindings": Array [
+            Query {
+              "bindings": Array [
+                "a",
+              ],
+              "queryString": "?",
+              "tables": undefined,
+            },
+            Query {
+              "bindings": Array [
+                Query {
+                  "bindings": Array [
+                    "a",
+                    "b",
+                    "c",
+                  ],
+                  "queryString": "array[?,?,?]::text[]",
+                  "tables": undefined,
+                },
+              ],
+              "queryString": "any(?)",
+              "tables": undefined,
+            },
+          ],
+          "queryString": "(? = ?)",
+          "tables": undefined,
+        },
+        Query {
+          "bindings": Array [
+            Query {
+              "bindings": Array [
+                false,
+              ],
+              "queryString": "?",
+              "tables": undefined,
+            },
+          ],
+          "queryString": "not (?)",
+          "tables": undefined,
+        },
+      ],
+      "queryString": "(? AND ?)",
+      "tables": undefined,
+    },
+    Query {
+      "bindings": Array [
+        Query {
+          "bindings": Array [
+            10,
+          ],
+          "queryString": "coalesc(table2.columnB, table3.columnC, ?)",
+          "tables": Array [
+            "table2, table3",
+          ],
+        },
+        Query {
+          "bindings": Array [],
+          "queryString": "(select columnX from tableX where tableX.columnA = table1.columnA)",
+          "tables": Array [
+            "table1",
+          ],
+        },
+      ],
+      "queryString": "(? in ?)",
+      "tables": undefined,
+    },
+  ],
+  "queryString": "(? OR ?)",
+  "tables": undefined,
+}
+`;
+
+exports[`should build query object from a JSON AST 2`] = `
+Object {
+  "bindings": Array [
+    "a",
+    "a",
+    "b",
+    "c",
+    false,
+    10,
+  ],
+  "queryString": "(((? = any(array[?,?,?]::text[])) AND not (?)) OR (coalesc(table2.columnB, table3.columnC, ?) in (select columnX from tableX where tableX.columnA = table1.columnA)))",
+  "tables": Array [
+    "table2, table3",
+    "table1",
+  ],
+}
+`;
