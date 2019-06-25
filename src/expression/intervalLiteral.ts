@@ -1,4 +1,4 @@
-import { ASTNode, ASTParam } from "../ast";
+import { ASTNode, ASTParam } from "zargon";
 import { UnknownIntervalUnit } from "../error/unknownIntervalUnit";
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
@@ -8,12 +8,7 @@ type IntervalUnit = typeof intervalUnits[number];
 
 @ASTNode
 export class IntervalLiteral extends Expression {
-  constructor(
-    @ASTParam("value")
-    protected value: number,
-    @ASTParam("unit")
-    protected unit: IntervalUnit,
-  ) {
+  constructor(@ASTParam("value") protected value: number, @ASTParam("unit") protected unit: IntervalUnit) {
     super();
   }
 

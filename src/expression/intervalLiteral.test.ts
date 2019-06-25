@@ -1,6 +1,6 @@
+import { UnknownIntervalUnit } from "../error/unknownIntervalUnit";
 import { queryBuilder, toSql } from "../utils/test_helpers";
 import { IntervalLiteral } from "./intervalLiteral";
-import { UnknownIntervalUnit } from "../error/unknownIntervalUnit";
 
 describe("IntervalLiteral", () => {
   test("throws on unknown unit", async () => {
