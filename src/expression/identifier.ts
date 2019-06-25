@@ -10,9 +10,12 @@ export class Identifier extends Expression {
 
   public async build(qb: QueryBuilder) {
     try {
-      const identifier = qb.resolve(this.name, this.args);
+      if (!this.name) {
+        throw new Error(`Knüppel: Unknown identifier ${this.name}`);
+      }
+      const identifier = qb.resolve(this.name.toLocaleLowerCase(), this.args);
       if (!identifier) {
-        throw new Error(`Knüppel: Unknown identifier ${identifier}`);
+        throw new Error(`Knüppel: Unknown identifier ${this.name}`);
       }
       return qb.query(identifier.queryString, identifier.bindings || [], identifier.tables);
     } catch (err) {
