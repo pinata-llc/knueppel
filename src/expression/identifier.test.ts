@@ -7,7 +7,7 @@ test("Identifier", async () => {
     doubleTest: { queryString: "(t.test1 = ? or t.test.2 = ?)", bindings: [true, false] },
   };
 
-  const mockIdentifierResolver = async (name: string) => Promise.resolve(identifiers[name]);
+  const mockIdentifierResolver = (name: string) => identifiers[name];
 
   const queryBuilder = new QueryBuilder(mockIdentifierResolver);
 

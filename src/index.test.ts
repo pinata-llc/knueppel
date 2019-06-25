@@ -1,5 +1,5 @@
 import { buildQuery } from "./index";
-import { getMockResolver } from "./utils/test_helpers";
+import { getMockResolver, knex } from "./utils/test_helpers";
 
 // tslint:disable-next-line
 const testJson = require("./index.test.json");

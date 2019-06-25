@@ -4,7 +4,7 @@ import { Query, QueryBuilder } from "../queryBuilder";
 export const knex = Knex({ client: "pg" });
 
 export function getMockResolver(identifierConfig: any) {
-  return async (name: string) => Promise.resolve(identifierConfig[name]);
+  return (name: string) => identifierConfig[name];
 }
 
 const mockIdentifierResolver = getMockResolver({ test: { queryString: "t.test" } });

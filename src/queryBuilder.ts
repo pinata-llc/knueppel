@@ -1,6 +1,6 @@
 import { Expression } from "./expression/expression";
 
-export type IdentifierResolver = (name: string, args?: Expression[]) => Promise<IResolverResult>;
+export type IdentifierResolver = (name: string, args?: Expression[]) => IResolverResult;
 
 export interface IResolverResult {
   queryString: string;

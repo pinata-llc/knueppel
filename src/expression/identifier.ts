@@ -10,7 +10,7 @@ export class Identifier extends Expression {
 
   public async build(qb: QueryBuilder) {
     try {
-      const identifier = await qb.resolve(this.name, this.args);
+      const identifier = qb.resolve(this.name, this.args);
       if (!identifier) {
         throw new Error(`Knüppel: Unknown identifier ${identifier}`);
       }
