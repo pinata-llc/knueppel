@@ -25,7 +25,7 @@ export class GeoRadiusExpression extends Expression {
   }
 
   public async build(qb: QueryBuilder) {
-    return qb.query(`earth_distance(?, ?) <= ? * ?`, [
+    return qb.query(`earth_distance(?, ?) <= ?::numeric * ?::numeric`, [
       await this.pointA.build(qb),
       await this.pointB.build(qb),
       await this.radius.build(qb),
