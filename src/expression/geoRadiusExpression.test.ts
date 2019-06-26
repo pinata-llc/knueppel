@@ -16,7 +16,7 @@ describe("GeoRadiusExpression", () => {
     const kmExpr = new GeoRadiusExpression(pointA, radius, "km", pointB).build(queryBuilder);
 
     expect(toSql(await kmExpr)).toBe(
-      "earth_distance(ll_to_earth(40.720727, -74.087358), ll_to_earth(41.107719, -73.546965)) <= 20 * 1000",
+      "earth_distance(ll_to_earth(40.720727, -74.087358), ll_to_earth(41.107719, -73.546965)) <= 20::numeric * 1000::numeric",
     );
   });
 
@@ -24,7 +24,7 @@ describe("GeoRadiusExpression", () => {
     const miExpr = new GeoRadiusExpression(pointA, radius, "mi", pointB).build(queryBuilder);
 
     expect(toSql(await miExpr)).toBe(
-      "earth_distance(ll_to_earth(40.720727, -74.087358), ll_to_earth(41.107719, -73.546965)) <= 20 * 1609.34",
+      "earth_distance(ll_to_earth(40.720727, -74.087358), ll_to_earth(41.107719, -73.546965)) <= 20::numeric * 1609.34::numeric",
     );
   });
 });
