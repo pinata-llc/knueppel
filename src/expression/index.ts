@@ -7,3 +7,4 @@ export { PointLiteral } from "./pointLiteral";
 export { LogicalExpression } from "./logicalExpression";
 export { NotExpression } from "./notExpression";
 export { GeoRadiusExpression } from "./geoRadiusExpression";
+export { NullLiteral } from "./nullLiteral";
