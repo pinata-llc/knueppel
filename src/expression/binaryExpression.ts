@@ -3,7 +3,7 @@ import { UnknownBinaryOperator } from "../error/unknownBinaryOperator";
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
-const binaryOperators = ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in"] as const;
+const binaryOperators = ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in", "is", "is not"] as const;
 export type BinaryOperator = typeof binaryOperators[number];
 
 @ASTNode

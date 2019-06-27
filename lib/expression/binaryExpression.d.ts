@@ -1,6 +1,6 @@
 import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
-declare const binaryOperators: readonly ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in"];
+declare const binaryOperators: readonly ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "in", "is", "is not"];
 export declare type BinaryOperator = typeof binaryOperators[number];
 export declare class BinaryExpression extends Expression {
     protected left: Expression;
