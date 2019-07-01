@@ -39,6 +39,8 @@ export class Query {
           compiledTables = compiledTables ? compiledTables.concat(query.tables) : query.tables;
         }
         return query.queryString;
+      } else if (binding === null) {
+        return "NULL";
       } else {
         compiledBindings.push(binding as SqlBinding);
         return "?";
