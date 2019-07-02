@@ -6,7 +6,6 @@ export declare class BinaryExpression extends Expression {
     protected left: Expression;
     protected operator: BinaryOperator;
     protected right: Expression;
-    private static buildArray;
     constructor(left: Expression, operator: BinaryOperator, right: Expression);
     build(qb: QueryBuilder): Promise<import("../queryBuilder").Query>;
 }

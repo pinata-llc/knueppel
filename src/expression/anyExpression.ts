@@ -11,10 +11,6 @@ export class AnyExpression extends Expression {
   }
 
   public async build(qb: QueryBuilder) {
-    if (this.values instanceof ListLiteral) {
-      const query = await this.values.compileAsArray(qb);
-      return qb.query("any(?)", [query]);
-    }
     return qb.query("any(?)", [await this.values.build(qb)]);
   }
 }
