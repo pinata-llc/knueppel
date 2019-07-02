@@ -8,7 +8,7 @@ export class ListLiteral extends Expression {
     super();
   }
 
-  public async compileAsArray(qb: QueryBuilder) {
+  public async build(qb: QueryBuilder) {
     if (Array.isArray(this.values) && this.values.length > 0) {
       const type = typeof this.values[0];
       let arrayType = "";
@@ -27,7 +27,7 @@ export class ListLiteral extends Expression {
     return qb.query("array[]", []);
   }
 
-  public async build(qb: QueryBuilder) {
+  public async buildAsList(qb: QueryBuilder) {
     const marks: unknown[] = this.values;
     return qb.query(`(${marks.map(() => "?").join(",")})`, this.values);
   }

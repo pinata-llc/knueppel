@@ -8,7 +8,7 @@ export class UUIDListLiteral extends ListLiteral {
     super(values);
   }
 
-  public async compileAsArray(qb: QueryBuilder) {
+  public async build(qb: QueryBuilder) {
     if (Array.isArray(this.values) && this.values.length > 0) {
       return qb.query(`array[${this.values.map(() => "?").join(",")}]::uuid[]`, this.values);
     }
