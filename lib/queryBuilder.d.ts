@@ -1,5 +1,4 @@
-import { Expression } from "./expression/expression";
-export declare type IdentifierResolver = (name: string, args?: Expression[]) => IResolverResult;
+export declare type IdentifierResolver = (name: string, args?: ICompiledQuery[]) => IResolverResult;
 export interface IResolverResult {
     queryString: string;
     bindings?: QueryBindings;
@@ -13,15 +12,16 @@ export declare class QueryBuilder {
 declare type SqlBinding = number | string | boolean | Date;
 declare type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 declare type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
+interface ICompiledQuery {
+    queryString: string;
+    bindings: SqlBindings;
+    tables?: string[] | undefined;
+}
 export declare class Query {
     private queryString;
     private bindings;
     private tables?;
     constructor(queryString: string, bindings: QueryBindings, tables?: string[] | undefined);
-    compile(): {
-        queryString: string;
-        bindings: SqlBindings;
-        tables?: string[] | undefined;
-    };
+    compile(): ICompiledQuery;
 }
 export {};

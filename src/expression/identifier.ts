@@ -9,11 +9,19 @@ export class Identifier extends Expression {
   }
 
   public async build(qb: QueryBuilder) {
+    let compiledArgs;
     try {
       if (!this.name) {
         throw new Error(`Knüppel: Unknown identifier ${this.name}`);
       }
-      const identifier = qb.resolve(this.name.toLocaleLowerCase(), this.args);
+      if (this.args) {
+        compiledArgs = await Promise.all(this.args && this.args.map(async arg => (await arg.build(qb)).compile()));
+      }
+
+      const identifier = qb.resolve(
+        this.name.toLocaleLowerCase(),
+        compiledArgs,
+      );
       if (!identifier) {
         throw new Error(`Knüppel: Unknown identifier ${this.name}`);
       }

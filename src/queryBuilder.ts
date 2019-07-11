@@ -1,6 +1,4 @@
-import { Expression } from "./expression/expression";
-
-export type IdentifierResolver = (name: string, args?: Expression[]) => IResolverResult;
+export type IdentifierResolver = (name: string, args?: ICompiledQuery[]) => IResolverResult;
 
 export interface IResolverResult {
   queryString: string;
@@ -19,13 +17,18 @@ export class QueryBuilder {
 type SqlBinding = number | string | boolean | Date;
 type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
+interface ICompiledQuery {
+  queryString: string;
+  bindings: SqlBindings;
+  tables?: string[] | undefined;
+}
 
 const qmark = /\?/g;
 
 export class Query {
   constructor(private queryString: string, private bindings: QueryBindings, private tables?: string[] | undefined) {}
 
-  public compile(): { queryString: string; bindings: SqlBindings; tables?: string[] | undefined } {
+  public compile(): ICompiledQuery {
     let cnt = 0;
     let compiledBindings: SqlBindings = [];
     let compiledTables: string[] | undefined;
