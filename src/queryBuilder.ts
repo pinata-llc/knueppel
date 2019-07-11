@@ -17,7 +17,7 @@ export class QueryBuilder {
 type SqlBinding = number | string | boolean | Date;
 type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
-interface ICompiledQuery {
+export interface ICompiledQuery {
   queryString: string;
   bindings: SqlBindings;
   tables?: string[] | undefined;

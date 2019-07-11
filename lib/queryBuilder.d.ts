@@ -12,7 +12,7 @@ export declare class QueryBuilder {
 declare type SqlBinding = number | string | boolean | Date;
 declare type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 declare type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
-interface ICompiledQuery {
+export interface ICompiledQuery {
     queryString: string;
     bindings: SqlBindings;
     tables?: string[] | undefined;
