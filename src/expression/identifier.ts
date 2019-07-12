@@ -9,14 +9,15 @@ export class Identifier extends Expression {
   }
 
   public async build(qb: QueryBuilder) {
-    /* tslint:disable-next-line */
-    let compiledArgs: ICompiledQuery[] | undefined = undefined;
+    let compiledArgs: ICompiledQuery[] | undefined;
     try {
       if (!this.name) {
         throw new Error(`Knüppel: Unknown identifier ${this.name}`);
       }
       if (this.args) {
         compiledArgs = await Promise.all(this.args && this.args.map(async arg => (await arg.build(qb)).compile()));
+      } else {
+        compiledArgs = undefined;
       }
 
       const identifier = qb.resolve(this.name.toLocaleLowerCase(), compiledArgs);
