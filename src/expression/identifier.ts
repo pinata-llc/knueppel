@@ -1,5 +1,5 @@
 import { ASTNode, ASTParam } from "zargon";
-import { ICompiledQuery, QueryBuilder } from "../queryBuilder";
+import { CompiledQuery, QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 
 @ASTNode
@@ -9,7 +9,7 @@ export class Identifier extends Expression {
   }
 
   public async build(qb: QueryBuilder) {
-    let compiledArgs: ICompiledQuery[] | undefined;
+    let compiledArgs: CompiledQuery[] | undefined;
     try {
       if (!this.name) {
         throw new Error(`Knüppel: Unknown identifier ${this.name}`);

@@ -1,5 +1,5 @@
-export declare type IdentifierResolver = (name: string, args?: ICompiledQuery[]) => IResolverResult;
-export interface IResolverResult {
+export declare type IdentifierResolver = (name: string, args?: CompiledQuery[]) => ResolverResult;
+export interface ResolverResult {
     queryString: string;
     bindings?: QueryBindings;
     tables?: string[];
@@ -12,7 +12,7 @@ export declare class QueryBuilder {
 declare type SqlBinding = number | string | boolean | Date;
 declare type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 declare type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
-export interface ICompiledQuery {
+export interface CompiledQuery {
     queryString: string;
     bindings: SqlBindings;
     tables?: string[] | undefined;
@@ -22,6 +22,6 @@ export declare class Query {
     private bindings;
     private tables?;
     constructor(queryString: string, bindings: QueryBindings, tables?: string[] | undefined);
-    compile(): ICompiledQuery;
+    compile(): CompiledQuery;
 }
 export {};

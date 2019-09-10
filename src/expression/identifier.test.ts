@@ -1,9 +1,9 @@
-import { IResolverResult, QueryBuilder } from "../queryBuilder";
+import { QueryBuilder, ResolverResult } from "../queryBuilder";
 import { toSql } from "../utils/test_helpers";
 import { Identifier } from "./identifier";
 
 test("Identifier", async () => {
-  const identifiers: { [name: string]: IResolverResult } = {
+  const identifiers: { [name: string]: ResolverResult } = {
     doubleTest: { queryString: "(t.test1 = ? or t.test.2 = ?)", bindings: [true, false] },
   };
 

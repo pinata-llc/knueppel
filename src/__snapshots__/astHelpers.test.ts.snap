@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`astHelpers buildLogicalExpression should create tree 1`] = `
+Object {
+  "left": Object {
+    "left": Object {
+      "name": "productCount",
+      "type": "Identifier",
+    },
+    "operator": "=",
+    "right": Object {
+      "type": "Literal",
+      "value": 1,
+    },
+    "type": "BinaryExpression",
+  },
+  "operator": "||",
+  "right": Object {
+    "left": Object {
+      "left": Object {
+        "name": "productCount",
+        "type": "Identifier",
+      },
+      "operator": ">",
+      "right": Object {
+        "type": "Literal",
+        "value": 20,
+      },
+      "type": "BinaryExpression",
+    },
+    "operator": "||",
+    "right": Object {
+      "left": Object {
+        "name": "startDate",
+        "type": "Identifier",
+      },
+      "operator": ">",
+      "right": Object {
+        "name": "now",
+        "type": "Identifier",
+      },
+      "type": "BinaryExpression",
+    },
+    "type": "LogicalExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;

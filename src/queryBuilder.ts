@@ -1,6 +1,6 @@
-export type IdentifierResolver = (name: string, args?: ICompiledQuery[]) => IResolverResult;
+export type IdentifierResolver = (name: string, args?: CompiledQuery[]) => ResolverResult;
 
-export interface IResolverResult {
+export interface ResolverResult {
   queryString: string;
   bindings?: QueryBindings;
   tables?: string[];
@@ -17,7 +17,7 @@ export class QueryBuilder {
 type SqlBinding = number | string | boolean | Date;
 type SqlBindings = Array<SqlBinding | SqlBinding[]>;
 type QueryBindings = Array<Query | SqlBinding | SqlBinding[]>;
-export interface ICompiledQuery {
+export interface CompiledQuery {
   queryString: string;
   bindings: SqlBindings;
   tables?: string[] | undefined;
@@ -28,7 +28,7 @@ const qmark = /\?/g;
 export class Query {
   constructor(private queryString: string, private bindings: QueryBindings, private tables?: string[] | undefined) {}
 
-  public compile(): ICompiledQuery {
+  public compile(): CompiledQuery {
     let cnt = 0;
     let compiledBindings: SqlBindings = [];
     let compiledTables: string[] | undefined;
