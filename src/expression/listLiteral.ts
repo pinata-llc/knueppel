@@ -24,11 +24,14 @@ export class ListLiteral extends Expression {
       const marks: unknown[] = this.values;
       return qb.query(`array[${marks.map(() => "?").join(",")}]${arrayType}`, this.values);
     }
-    return qb.query("array[]", []);
+    return qb.query("'{}'", []);
   }
 
   public async buildAsList(qb: QueryBuilder) {
     const marks: unknown[] = this.values;
+    if (!Array.isArray(marks) || marks.length === 0) {
+      return qb.query("(null)", []);
+    }
     return qb.query(`(${marks.map(() => "?").join(",")})`, this.values);
   }
 }
