@@ -4,7 +4,25 @@ import { QueryBuilder } from "../queryBuilder";
 import { Expression } from "./expression";
 import { ListLiteral } from "./listLiteral";
 
-const binaryOperators = ["=", "!=", "<", "<=", ">", ">=", "+", "-", "*", "/", "%", "&&", "in", "is", "is not"] as const;
+const binaryOperators = [
+  "=",
+  "!=",
+  "<",
+  "<=",
+  ">",
+  ">=",
+  "+",
+  "-",
+  "*",
+  "/",
+  "%",
+  "&&",
+  "in",
+  "is",
+  "is not",
+  "like",
+  "ilike",
+] as const;
 export type BinaryOperator = typeof binaryOperators[number];
 
 @ASTNode
