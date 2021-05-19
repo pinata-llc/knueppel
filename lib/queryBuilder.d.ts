@@ -1,4 +1,4 @@
-export declare type IdentifierResolver = (name: string, args?: CompiledQuery[]) => ResolverResult;
+export declare type IdentifierResolver = (name: string, args?: Query[]) => ResolverResult;
 export interface ResolverResult {
     queryString: string;
     bindings?: QueryBindings;

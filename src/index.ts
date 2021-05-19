@@ -1,5 +1,7 @@
 import { build } from "zargon";
-import { IdentifierResolver, QueryBuilder } from "./queryBuilder";
+import { IdentifierResolver, Query, QueryBuilder } from "./queryBuilder";
+
+export { Query, QueryBuilder };
 
 import * as Expressions from "./expression";
 export const Expression = Expressions;

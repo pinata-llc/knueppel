@@ -1,4 +1,5 @@
-import { IdentifierResolver } from "./queryBuilder";
+import { IdentifierResolver, Query, QueryBuilder } from "./queryBuilder";
+export { Query, QueryBuilder };
 import * as Expressions from "./expression";
 export declare const Expression: typeof Expressions;
 export declare function buildQuery(jsonAst: any, resolve: IdentifierResolver): any;
