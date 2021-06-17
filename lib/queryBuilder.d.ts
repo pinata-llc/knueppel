@@ -18,9 +18,9 @@ export interface CompiledQuery {
     tables?: string[] | undefined;
 }
 export declare class Query {
-    private queryString;
-    private bindings;
-    private tables?;
+    queryString: string;
+    bindings: QueryBindings;
+    tables?: string[] | undefined;
     constructor(queryString: string, bindings: QueryBindings, tables?: string[] | undefined);
     compile(): CompiledQuery;
 }

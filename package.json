@@ -1,6 +1,6 @@
 {
   "name": "knueppel",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Compiles the Knüppel language to SQL/KnexJs objects",
   "main": "lib/index.js",
   "files": [
@@ -33,12 +33,12 @@
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "knex": "^0.20.1",
-    "prettier": "^1.16.4",
-    "ts-jest": "^24.0.2",
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^4.3.2"
   },
   "husky": {
     "hooks": {

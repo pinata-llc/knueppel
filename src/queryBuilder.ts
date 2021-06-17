@@ -26,7 +26,7 @@ export interface CompiledQuery {
 const qmark = /\?/g;
 
 export class Query {
-  constructor(private queryString: string, private bindings: QueryBindings, private tables?: string[] | undefined) {}
+  constructor(public queryString: string, public bindings: QueryBindings, public tables?: string[] | undefined) {}
 
   public compile(): CompiledQuery {
     let cnt = 0;
