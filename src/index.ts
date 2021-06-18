@@ -9,7 +9,7 @@ export const Expression = Expressions;
 export function buildQuery(jsonAst: any, resolve: IdentifierResolver) {
   const ast = build(jsonAst);
   const qb = new QueryBuilder(resolve);
-  return ast.build(qb);
+  return ast.build(qb) as Promise<Query>;
 }
 
 export async function compileQuery(jsonAst: any, resolve: IdentifierResolver) {
