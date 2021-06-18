@@ -1,13 +1,13 @@
 {
   "name": "knueppel",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Compiles the Knüppel language to SQL/KnexJs objects",
   "main": "lib/index.js",
   "files": [
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -d",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest"

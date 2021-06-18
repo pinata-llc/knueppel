@@ -23,7 +23,7 @@ export interface CompiledQuery {
   tables?: string[] | undefined;
 }
 
-const qmark = /\?/g;
+const qmark = /(?<!\\)\?/g;
 
 export class Query {
   constructor(public queryString: string, public bindings: QueryBindings, public tables?: string[] | undefined) {}
