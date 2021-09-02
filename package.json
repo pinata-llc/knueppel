@@ -1,6 +1,6 @@
 {
   "name": "knueppel",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Compiles the Knüppel language to SQL/KnexJs objects",
   "main": "lib/index.js",
   "files": [

@@ -12,6 +12,6 @@ export class UUIDListLiteral extends ListLiteral {
     if (Array.isArray(this.values) && this.values.length > 0) {
       return qb.query(`array[${this.values.map(() => "?").join(",")}]::uuid[]`, this.values);
     }
-    return qb.query("array[]", []);
+    return qb.query("array[]::uuid[]", []);
   }
 }
